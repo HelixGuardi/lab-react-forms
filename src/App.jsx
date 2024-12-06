@@ -5,9 +5,18 @@ import TableHeader from "./components/TableHeader";
 import StudentCard from "./components/StudentCard";
 
 import studentsData from "./assets/students.json";
+import { useActionData } from "react-router-dom";
 
 function App() {
   const [students, setStudents] = useState(studentsData);
+
+  const [fullName, setFullName] = useState("");
+  const [image, setImage] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [program, setProgram] = useState("");
+  const [graduationYear, setGraduationYear] = useState(0);
+  const [graduated] = useState(false);
 
 
   return (
