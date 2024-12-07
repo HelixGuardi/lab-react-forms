@@ -7,7 +7,7 @@ import StudentCard from "./components/StudentCard";
 import studentsData from "./assets/students.json";
 import { useActionData } from "react-router-dom";
 
-function App(props) {
+function App() {
   const [students, setStudents] = useState(studentsData);
 
   const [fullName, setFullName] = useState("");
@@ -26,18 +26,22 @@ function App(props) {
   const handleGraduationYearInput = (event) => setGraduationYear(event.target.value);
   const handleGraduatedCheckbox = (event) => setGraduated(event.target.value);
 
-  const handleSubmit = (event) => {
+  const handleFormSubmit = (event) => {
     event.preventDefault();
-    const newStudent = {image, fullName, program, email, phone, graduated};
+    const newStudent = {fullName, email, phone, program, image, graduated}
 
     console.log("Submitted", newStudent);
+    const studentArrClone = [...students, newStudent];
+    setStudents(studentArrClone);
+    
 
     setImage("");
     setFullName("");
     setProgram("");
     setEmail("");
     setPhone("");
-    setGraduated("");
+    setGraduated(false);
+    setGraduationYear(0);
   }
 
   return (
@@ -45,7 +49,7 @@ function App(props) {
       <Navbar />
 
       {/* FORM */}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleFormSubmit}>
         <span>Add a Student</span>
         <div>
           <label>
